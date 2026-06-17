@@ -31,16 +31,48 @@
 
         header { text-align: center; margin-bottom: 2rem; }
 
+        .header-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: nowrap;
+        }
+
+        .header-logo {
+            width: 140px;
+            height: 72px;
+            min-width: 110px;
+            object-fit: contain;
+            border-radius: 18px 14px 14px 18px;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.32rem 0.4rem;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.12),
+                0 10px 22px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            filter: drop-shadow(0 0 14px rgba(15, 23, 42, 0.82));
+        }
+
         h1 {
             font-size: 2.5rem;
+            line-height: 1.1;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
-            margin-bottom: 0.5rem;
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-align: left;
         }
 
-        p.subtitle { color: var(--text-secondary); }
+        p.subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
 
         /* TABS DE GRUPOS */
         .tabs-wrapper {
@@ -204,8 +236,82 @@
 
         .table-responsive { overflow-x: auto; }
 
+        footer {
+            margin-top: 2rem;
+            padding: 1.25rem 0.75rem 1.75rem;
+            text-align: center;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem 1rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+            color: var(--accent);
+        }
+
+        .footer-links img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .footer-copy {
+            font-size: 0.82rem;
+            opacity: 0.9;
+        }
+
         @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
+            body { padding: 1.25rem 0.75rem; }
+
+            header { margin-bottom: 1.25rem; }
+
+            .header-brand {
+                gap: 0.5rem;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .header-logo {
+                width: 88px;
+                height: 60px;
+                min-width: 88px;
+            }
+
+            h1 {
+                font-size: 1.45rem;
+                letter-spacing: 1px;
+                text-align: center;
+                white-space: normal;
+                word-break: break-word;
+            }
+
+            p.subtitle {
+                font-size: 0.8rem;
+                line-height: 1.3;
+            }
+
             .team-name { font-size: 0.85rem; }
         }
     </style>
@@ -213,7 +319,10 @@
 <body>
     <div class="container">
         <header>
-            <h1>⚽ Fixture Mundial 2026</h1>
+            <div class="header-brand">
+                <img src="img/logosublime.png" alt="Logo Sublime" class="header-logo">
+                <h1>Fixture Mundial 2026 ⚽</h1>
+            </div>
             <p class="subtitle">Datos en vivo desde football-data.org</p>
         </header>
 
@@ -255,6 +364,24 @@
                 </div>
             </section>
         </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <img src="img/facebook.png" alt="Facebook">
+                    <span>Sublime design</span>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <img src="img/instagram.png" alt="Instagram">
+                    <span>sublime.tdf</span>
+                </a>
+                <a href="https://wa.me/5492964559270" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <img src="img/whatsapp.png" alt="WhatsApp">
+                    <span>2964 559270</span>
+                </a>
+            </div>
+            <div class="footer-copy">© 2026 Sublime Design. Todos los derechos reservados.</div>
+        </footer>
     </div>
 
     <script>
@@ -265,6 +392,7 @@ const traducciones = {
   "Argentina": "Argentina",
   "Australia": "Australia",
   "Austria": "Austria",
+  "Algeria": "Argelia",
   "Belgium": "Bélgica",
   "Brazil": "Brasil",
   "Canada": "Canadá",
@@ -289,6 +417,7 @@ const traducciones = {
   "Iran": "Irán",
   "Ivory Coast": "Costa de Marfil",
   "Japan": "Japón",
+  "Jordan": "Jordania",
   "Mexico": "México",
   "Morocco": "Marruecos",
   "Netherlands": "Países Bajos",

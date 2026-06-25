@@ -15,6 +15,7 @@
             --accent-hover: #059669;
             --border: #334155;
             --gold: #fbbf24;
+            --red: #f87171;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0;
@@ -27,8 +28,9 @@
             padding: 2rem 1rem;
         }
 
-        .container { max-width: 900px; margin: 0 auto; }
+        .container { max-width: 960px; margin: 0 auto; }
 
+        /* ── HEADER ── */
         header { text-align: center; margin-bottom: 2rem; }
 
         .header-brand {
@@ -37,70 +39,71 @@
             justify-content: center;
             gap: 0.75rem;
             margin-bottom: 0.5rem;
-            flex-wrap: nowrap;
         }
 
         .header-logo {
-            width: 140px;
-            height: 72px;
-            min-width: 110px;
+            width: 140px; height: 72px; min-width: 110px;
             object-fit: contain;
             border-radius: 18px 14px 14px 18px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255,255,255,0.12);
             padding: 0.32rem 0.4rem;
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.12),
-                0 10px 22px rgba(0, 0, 0, 0.45),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12);
-            filter: drop-shadow(0 0 14px rgba(15, 23, 42, 0.82));
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 10px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12);
+            filter: drop-shadow(0 0 14px rgba(15,23,42,0.82));
         }
 
         h1 {
-            font-size: 2.5rem;
-            line-height: 1.1;
+            font-size: 2.5rem; line-height: 1.1;
             color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+            text-transform: uppercase; letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(16,185,129,0.3);
             margin: 0;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-align: left;
         }
 
-        p.subtitle {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
+        p.subtitle { color: var(--text-secondary); font-size: 0.95rem; }
 
-        /* TABS DE GRUPOS */
-        .tabs-wrapper {
+        /* ── NAV PRINCIPAL (fases) ── */
+        .phase-nav {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.4rem;
             margin-bottom: 1.5rem;
             justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .phase-btn {
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            padding: 0.55rem 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.88rem;
+            transition: all 0.2s;
+            letter-spacing: 0.3px;
+        }
+        .phase-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+        .phase-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        /* ── TABS DE GRUPOS ── */
+        .tabs-wrapper {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-bottom: 1.5rem; justify-content: center;
         }
 
         .tab-btn {
-            background-color: var(--card-bg);
-            color: var(--text-secondary);
+            background: var(--card-bg); color: var(--text-secondary);
             border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
+            padding: 0.5rem 1rem; border-radius: 8px;
+            cursor: pointer; font-weight: 600; font-size: 0.9rem;
             transition: all 0.2s;
         }
-
         .tab-btn:hover { border-color: var(--accent); color: var(--text-primary); }
-        .tab-btn.active { background-color: var(--accent); color: #fff; border-color: var(--accent); }
+        .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-        /* CARD */
+        /* ── CARD ── */
         .card {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 1.5rem;
             margin-bottom: 2rem;
@@ -109,25 +112,25 @@
         }
 
         h2 {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem; margin-bottom: 1.5rem;
             color: var(--gold);
             border-bottom: 2px solid var(--border);
             padding-bottom: 0.5rem;
         }
 
-        /* PARTIDOS */
+        /* ── PARTIDOS (fase de grupos) ── */
+        .match-wrapper { width: 100%; }
+
         .match-card {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            border-bottom: 1px solid rgba(51,65,85,0.5);
             border-radius: 8px;
             transition: background-color 0.2s;
         }
-
-        .match-card:hover { background-color: rgba(255,255,255,0.02); }
+        .match-card:hover { background: rgba(255,255,255,0.02); }
         .match-card:last-child { border-bottom: none; }
 
         .team { display: flex; align-items: center; flex: 1; }
@@ -139,77 +142,194 @@
         .team-away .team-name { margin-left: 0.75rem; }
 
         .vs {
-            margin: 0 0.75rem;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: bold;
-            background-color: var(--bg-color);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            min-width: 2.5rem;
-            text-align: center;
+            margin: 0 0.75rem; color: var(--text-secondary);
+            font-size: 0.85rem; font-weight: bold;
+            background: var(--bg-color);
+            padding: 0.2rem 0.5rem; border-radius: 4px;
+            min-width: 2.5rem; text-align: center;
         }
 
         .score-display {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.2rem; font-weight: 700;
             color: var(--accent);
-            min-width: 4rem;
-            text-align: center;
+            min-width: 4rem; text-align: center;
         }
 
         .match-date {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-top: 0.25rem;
+            font-size: 0.75rem; color: var(--text-secondary);
+            text-align: center; margin-top: 0.25rem;
         }
 
-        .match-wrapper { width: 100%; }
-
-        /* ESTADO del partido */
         .status-badge {
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.15rem 0.5rem;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 0.7rem; font-weight: 700;
+            padding: 0.15rem 0.5rem; border-radius: 4px;
+            text-transform: uppercase; letter-spacing: 0.5px;
         }
         .status-finished { background: #166534; color: #bbf7d0; }
-        .status-live { background: #991b1b; color: #fecaca; animation: pulse 1s infinite; }
-        .status-scheduled { background: #1e3a5f; color: #93c5fd; }
+        .status-live     { background: #991b1b; color: #fecaca; animation: pulse 1s infinite; }
+        .status-scheduled{ background: #1e3a5f; color: #93c5fd; }
 
-        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
 
-        /* TABLA DE POSICIONES */
+        /* ── TABLA DE POSICIONES ── */
         table { width: 100%; border-collapse: collapse; }
-
         th, td { padding: 0.8rem 0.6rem; text-align: center; border-bottom: 1px solid var(--border); }
         th { color: var(--text-secondary); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
         td { font-size: 0.95rem; }
         th:first-child, td:first-child { text-align: left; }
-
         tbody tr { transition: background-color 0.2s; }
-        tbody tr:hover { background-color: rgba(255,255,255,0.05); }
-
-        /* Top 2 clasifican */
+        tbody tr:hover { background: rgba(255,255,255,0.05); }
         .clasificado-1 td { color: var(--accent); font-weight: 700; }
         .clasificado-2 td:first-child { border-left: 3px solid var(--accent); }
 
-        /* LOADING */
-        .loading {
+        /* ── BRACKET (eliminatorias) ── */
+        #bracket-view { display: none; }
+
+        .bracket-phase-label {
             text-align: center;
-            padding: 3rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            margin-bottom: 1rem;
         }
 
+        /* Lista de partidos eliminatorios */
+        .ko-matches-list { display: flex; flex-direction: column; gap: 1rem; }
+
+        .ko-match {
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .ko-match:hover { border-color: var(--accent); }
+
+        .ko-match-header {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            padding: 0.4rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ko-teams {
+            display: flex;
+            align-items: stretch;
+            min-height: 72px;
+        }
+
+        .ko-team {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            gap: 0.6rem;
+        }
+
+        .ko-team-home { justify-content: flex-end; text-align: right; }
+        .ko-team-away { justify-content: flex-start; text-align: left; }
+
+        .ko-team-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            line-height: 1.2;
+        }
+
+        .ko-team-tbd {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .ko-score-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0.75rem;
+            min-width: 80px;
+            gap: 0.3rem;
+        }
+
+        .ko-score-main {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            letter-spacing: 2px;
+        }
+
+        .ko-score-pen {
+            font-size: 0.7rem;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .ko-vs {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        .ko-date {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            padding: 0.3rem 1rem 0.5rem;
+            text-align: center;
+        }
+
+        /* Winner highlight */
+        .ko-team.winner .ko-team-name { color: var(--accent); }
+
+        /* ── CAMPEÓN ── */
+        #champion-view { display: none; }
+
+        .champion-card {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .champion-trophy { font-size: 5rem; margin-bottom: 1rem; }
+
+        .champion-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .champion-name {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-shadow: 0 0 30px rgba(251,191,36,0.4);
+            letter-spacing: 1px;
+        }
+
+        .champion-placeholder {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* ── LOADING / ERROR ── */
+        .loading {
+            text-align: center; padding: 3rem;
+            color: var(--text-secondary); font-size: 1.1rem;
+        }
         .loading::after {
             content: '';
             display: inline-block;
-            width: 1.2rem;
-            height: 1.2rem;
+            width: 1.2rem; height: 1.2rem;
             border: 3px solid var(--border);
             border-top-color: var(--accent);
             border-radius: 50%;
@@ -217,122 +337,80 @@
             margin-left: 0.75rem;
             vertical-align: middle;
         }
-
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        .error-msg {
-            text-align: center;
-            padding: 2rem;
-            color: #f87171;
-            font-weight: 600;
-        }
-
-        .error-hint {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 400;
-            margin-top: 0.5rem;
-        }
+        .error-msg { text-align: center; padding: 2rem; color: var(--red); font-weight: 600; }
+        .error-hint { color: var(--text-secondary); font-size: 0.9rem; font-weight: 400; margin-top: 0.5rem; }
 
         .table-responsive { overflow-x: auto; }
 
+        /* ── FOOTER ── */
         footer {
             margin-top: 2rem;
             padding: 1.25rem 0.75rem 1.75rem;
             text-align: center;
             color: var(--text-secondary);
-            border-top: 1px solid rgba(51, 65, 85, 0.5);
+            border-top: 1px solid rgba(51,65,85,0.5);
         }
-
         .footer-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.8rem 1rem;
-            margin-bottom: 0.7rem;
+            display: flex; justify-content: center; align-items: center;
+            flex-wrap: wrap; gap: 0.8rem 1rem; margin-bottom: 0.7rem;
         }
-
         .footer-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            text-decoration: none;
-            color: var(--text-secondary);
-            transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            text-decoration: none; color: var(--text-secondary);
+            transition: transform 0.2s, opacity 0.2s, color 0.2s;
             font-size: 0.9rem;
         }
+        .footer-links a:hover { transform: translateY(-1px); opacity: 0.9; color: var(--accent); }
+        .footer-links img { width: 26px; height: 26px; object-fit: contain; display: block; flex-shrink: 0; }
+        .footer-copy { font-size: 0.82rem; opacity: 0.9; }
 
-        .footer-links a:hover {
-            transform: translateY(-1px);
-            opacity: 0.9;
-            color: var(--accent);
-        }
-
-        .footer-links img {
-            width: 26px;
-            height: 26px;
-            object-fit: contain;
-            display: block;
-            flex-shrink: 0;
-        }
-
-        .footer-copy {
-            font-size: 0.82rem;
-            opacity: 0.9;
-        }
-
+        /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
             body { padding: 1.25rem 0.75rem; }
-
             header { margin-bottom: 1.25rem; }
-
-            .header-brand {
-                gap: 0.5rem;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .header-logo {
-                width: 88px;
-                height: 60px;
-                min-width: 88px;
-            }
-
-            h1 {
-                font-size: 1.45rem;
-                letter-spacing: 1px;
-                text-align: center;
-                white-space: normal;
-                word-break: break-word;
-            }
-
-            p.subtitle {
-                font-size: 0.8rem;
-                line-height: 1.3;
-            }
-
+            .header-logo { width: 88px; height: 60px; min-width: 88px; }
+            h1 { font-size: 1.45rem; letter-spacing: 1px; }
+            p.subtitle { font-size: 0.8rem; }
             .team-name { font-size: 0.85rem; }
+            .phase-btn { font-size: 0.78rem; padding: 0.45rem 0.75rem; }
+            .ko-team-name { font-size: 0.82rem; }
+            .ko-score-main { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-brand">
-                <img src="img/logosublime.png" alt="Logo Sublime" class="header-logo">
-                <h1>Fixture Mundial 2026 ⚽</h1>
-            </div>
-            <p class="subtitle">Datos en vivo desde football-data.org</p>
-        </header>
+<div class="container">
 
-        <main>
-            <!-- TABS DE GRUPOS -->
+    <header>
+        <div class="header-brand">
+            <img src="img/logosublime.png" alt="Logo Sublime" class="header-logo">
+            <h1>Fixture Mundial 2026 ⚽</h1>
+        </div>
+        <p class="subtitle">Datos en vivo desde football-data.org</p>
+    </header>
+
+    <main>
+
+        <!-- ── NAV PRINCIPAL ── -->
+        <nav class="phase-nav" id="phase-nav">
+            <button class="phase-btn active" data-phase="groups">📋 Fase de Grupos</button>
+            <button class="phase-btn" data-phase="r32">🛡️ Dieciseisavos</button>
+            <button class="phase-btn" data-phase="r16">⚔️ Octavos</button>
+            <button class="phase-btn" data-phase="qf">🏅 Cuartos</button>
+            <button class="phase-btn" data-phase="sf">🔥 Semifinales</button>
+            <button class="phase-btn" data-phase="final">🏆 Final</button>
+        </nav>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!--  VISTA: FASE DE GRUPOS                  -->
+        <!-- ═══════════════════════════════════════ -->
+        <div id="groups-view">
             <div class="tabs-wrapper" id="group-tabs">
                 <div class="loading">Cargando grupos</div>
             </div>
 
-            <!-- PARTIDOS DEL GRUPO SELECCIONADO -->
             <section class="card">
                 <h2 id="grupo-titulo">Fase de Grupos</h2>
                 <div id="matches-container">
@@ -340,326 +418,535 @@
                 </div>
             </section>
 
-            <!-- TABLA DE POSICIONES -->
             <section class="card">
-                <h2>📊 Tabla de Posiciones — <span id="tabla-grupo-nombre">Grupo A</span></h2>
+                <h2>📊 Posiciones — <span id="tabla-grupo-nombre">Grupo A</span></h2>
                 <div class="table-responsive">
-                    <table id="standings-table">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Equipo</th>
-                                <th>Pts</th>
-                                <th>PJ</th>
-                                <th>G</th>
-                                <th>E</th>
-                                <th>P</th>
-                                <th>GF</th>
-                                <th>GC</th>
-                                <th>DF</th>
+                                <th>Pts</th><th>PJ</th><th>G</th><th>E</th><th>P</th>
+                                <th>GF</th><th>GC</th><th>DF</th>
                             </tr>
                         </thead>
-                        <tbody id="standings-body">
-                        </tbody>
+                        <tbody id="standings-body"></tbody>
                     </table>
                 </div>
             </section>
-        </main>
+        </div>
 
-        <footer>
-            <div class="footer-links">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <img src="img/facebook.png" alt="Facebook">
-                    <span>Sublime design</span>
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <img src="img/instagram.png" alt="Instagram">
-                    <span>sublime.tdf</span>
-                </a>
-                <a href="https://wa.me/5492964559270" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                    <img src="img/whatsapp.png" alt="WhatsApp">
-                    <span>2964 559270</span>
-                </a>
-            </div>
-            <div class="footer-copy">© 2026 Sublime Design. Todos los derechos reservados.</div>
-        </footer>
-    </div>
+        <!-- ═══════════════════════════════════════ -->
+        <!--  VISTA: ELIMINATORIAS (genérica)        -->
+        <!-- ═══════════════════════════════════════ -->
+        <div id="bracket-view">
+            <section class="card">
+                <h2 id="bracket-title">Eliminatorias</h2>
+                <div class="bracket-phase-label" id="bracket-phase-label"></div>
+                <div class="ko-matches-list" id="ko-matches-container">
+                    <div class="loading">Cargando partidos</div>
+                </div>
+            </section>
+        </div>
 
-    <script>
-// ─────────────────────────────────────────
-// TRADUCCIÓN DE NOMBRES DE PAÍSES
-// ─────────────────────────────────────────
+        <!-- ═══════════════════════════════════════ -->
+        <!--  VISTA: CAMPEÓN                         -->
+        <!-- ═══════════════════════════════════════ -->
+        <div id="champion-view">
+            <section class="card">
+                <div class="champion-card" id="champion-content">
+                    <div class="champion-trophy">🏆</div>
+                    <div class="champion-label">Campeón Mundial 2026</div>
+                    <div class="champion-placeholder">La final aún no se ha jugado</div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <img src="img/facebook.png" alt="Facebook"><span>Sublime design</span>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <img src="img/instagram.png" alt="Instagram"><span>sublime.tdf</span>
+            </a>
+            <a href="https://wa.me/5492964559270" target="_blank" rel="noopener noreferrer">
+                <img src="img/whatsapp.png" alt="WhatsApp"><span>2964 559270</span>
+            </a>
+        </div>
+        <div class="footer-copy">© 2026 Sublime Design. Todos los derechos reservados.</div>
+    </footer>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// TRADUCCIONES
+// ─────────────────────────────────────────────────────────────
 const traducciones = {
-  "Argentina": "Argentina",
-  "Australia": "Australia",
-  "Austria": "Austria",
-  "Algeria": "Argelia",
-  "Belgium": "Bélgica",
-  "Brazil": "Brasil",
-  "Canada": "Canadá",
-  "Cape Verde Islands": "Cabo Verde",
-  "Chile": "Chile",
-  "China": "China",
-  "Colombia": "Colombia",
-  "Costa Rica": "Costa Rica",
-  "Croatia": "Croacia",
-  "Czechia": "Chequia",
-  "Czech Republic": "República Checa",
-  "Denmark": "Dinamarca",
-  "Ecuador": "Ecuador",
-  "Egypt": "Egipto",
-  "England": "Inglaterra",
-  "Finland": "Finlandia",
-  "France": "Francia",
-  "Germany": "Alemania",
-  "Ghana": "Ghana",
-  "Greece": "Grecia",
-  "Hungary": "Hungría",
-  "Iran": "Irán",
-  "Ivory Coast": "Costa de Marfil",
-  "Japan": "Japón",
-  "Jordan": "Jordania",
-  "Mexico": "México",
-  "Morocco": "Marruecos",
-  "Netherlands": "Países Bajos",
-  "New Zealand": "Nueva Zelanda",
-  "Nigeria": "Nigeria",
-  "Norway": "Noruega",
-  "Paraguay": "Paraguay",
-  "Peru": "Perú",
-  "Poland": "Polonia",
-  "Portugal": "Portugal",
-  "Qatar": "Catar",
-  "Saudi Arabia": "Arabia Saudita",
-  "Scotland": "Escocia",
-  "Senegal": "Senegal",
-  "Serbia": "Serbia",
-  "South Korea": "Corea del Sur",
-  "South Africa": "Sudáfrica",
-  "Spain": "España",
-  "Sweden": "Suecia",
-  "Switzerland": "Suiza",
-  "Tunisia": "Túnez",
-  "Turkey": "Turquía",
-  "Ukraine": "Ucrania",
-  "United States": "Estados Unidos",
-  "Uruguay": "Uruguay",
-  "Wales": "Gales"
+  "Argentina":"Argentina","Australia":"Australia","Austria":"Austria",
+  "Algeria":"Argelia","Belgium":"Bélgica","Brazil":"Brasil",
+  "Canada":"Canadá","Cape Verde Islands":"Cabo Verde","Chile":"Chile",
+  "China":"China","Colombia":"Colombia","Costa Rica":"Costa Rica",
+  "Croatia":"Croacia","Czechia":"Chequia","Czech Republic":"República Checa",
+  "Denmark":"Dinamarca","Ecuador":"Ecuador","Egypt":"Egipto",
+  "England":"Inglaterra","Finland":"Finlandia","France":"Francia",
+  "Germany":"Alemania","Ghana":"Ghana","Greece":"Grecia",
+  "Hungary":"Hungría","Iran":"Irán","Ivory Coast":"Costa de Marfil",
+  "Japan":"Japón","Jordan":"Jordania","Mexico":"México",
+  "Morocco":"Marruecos","Netherlands":"Países Bajos","New Zealand":"Nueva Zelanda",
+  "Nigeria":"Nigeria","Norway":"Noruega","Paraguay":"Paraguay",
+  "Peru":"Perú","Poland":"Polonia","Portugal":"Portugal",
+  "Qatar":"Catar","Saudi Arabia":"Arabia Saudita","Scotland":"Escocia",
+  "Senegal":"Senegal","Serbia":"Serbia","South Korea":"Corea del Sur",
+  "South Africa":"Sudáfrica","Spain":"España","Sweden":"Suecia",
+  "Switzerland":"Suiza","Tunisia":"Túnez","Turkey":"Turquía",
+  "Ukraine":"Ucrania","United States":"Estados Unidos","Uruguay":"Uruguay",
+  "Wales":"Gales","IR Iran":"Irán","Korea Republic":"Corea del Sur",
+  "USA":"Estados Unidos"
 };
 
-function traducir(nombre) {
-  return traducciones[nombre] || nombre;
+function t(n) { return traducciones[n] || n || "—"; }
+
+// ─────────────────────────────────────────────────────────────
+// MAPAS DE FASES
+// ─────────────────────────────────────────────────────────────
+const PHASE_CONFIG = {
+  r32:   { stage: "LAST_32",        label: "1/16 · Dieciseisavos de Final",  title: "Dieciseisavos de Final" },
+  r16:   { stage: "ROUND_OF_16",    label: "Octavos de Final",               title: "Octavos de Final" },
+  qf:    { stage: "QUARTER_FINALS", label: "Cuartos de Final",               title: "Cuartos de Final" },
+  sf:    { stage: "SEMI_FINALS",    label: "Semifinales",                    title: "Semifinales" },
+  final: { stage: "FINAL",          label: "Gran Final",                     title: "Final del Mundial" }
+};
+
+// Etiquetas de jornada para eliminatorias
+const MATCH_LABELS = {
+  r32:   n => `Partido ${n} · Dieciseisavos`,
+  r16:   n => `Partido ${n} · Octavos`,
+  qf:    n => `Partido ${n} · Cuartos de Final`,
+  sf:    n => `Partido ${n} · Semifinal`,
+  final: n => `Gran Final · Mundial 2026`
+};
+
+// ─────────────────────────────────────────────────────────────
+// ESTADO GLOBAL
+// ─────────────────────────────────────────────────────────────
+let allMatches = [];         // todos los partidos crudos del backend
+let groupMatches = {};       // { "GROUP_A": [...] }
+let koMatches = {};          // { "ROUND_OF_16": [...], ... }
+let activePhase = "groups";  // fase activa
+let activeGroup = null;      // grupo activo
+
+// ─────────────────────────────────────────────────────────────
+// INIT — fetch al backend
+// ─────────────────────────────────────────────────────────────
+fetch("https://fixture2026-backend.onrender.com/matches")
+  .then(res => {
+    if (!res.ok) throw new Error(`Error ${res.status}`);
+    return res.json();
+  })
+  .then(data => {
+    if (!data.matches || data.matches.length === 0) {
+      showError("La API no devolvió partidos.");
+      return;
+    }
+
+    allMatches = data.matches;
+
+    // Separar grupos vs eliminatorias
+    allMatches.forEach(p => {
+      if (p.stage === "GROUP_STAGE") {
+        const g = p.grupo || "SIN_GRUPO";
+        if (!groupMatches[g]) groupMatches[g] = [];
+        groupMatches[g].push(p);
+      } else {
+        const s = p.stage || "UNKNOWN";
+        if (!koMatches[s]) koMatches[s] = [];
+        koMatches[s].push(p);
+      }
+    });
+
+    buildGroupTabs();
+    showPhase("groups");
+  })
+  .catch(err => {
+    console.error(err);
+    showError(
+      "No se pudo conectar con el servidor backend.",
+      "Asegurate de que el servidor esté corriendo en Render."
+    );
+    document.getElementById("group-tabs").innerHTML = "";
+  });
+
+// ─────────────────────────────────────────────────────────────
+// NAV PRINCIPAL
+// ─────────────────────────────────────────────────────────────
+document.querySelectorAll(".phase-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".phase-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    showPhase(btn.dataset.phase);
+  });
+});
+
+function showPhase(phase) {
+  activePhase = phase;
+
+  // Ocultar todo
+  document.getElementById("groups-view").style.display   = "none";
+  document.getElementById("bracket-view").style.display  = "none";
+  document.getElementById("champion-view").style.display = "none";
+
+  if (phase === "groups") {
+    document.getElementById("groups-view").style.display = "block";
+    if (activeGroup) renderTabla(activeGroup);
+  } else if (phase === "final") {
+    document.getElementById("champion-view").style.display = "block";
+    renderChampion();
+    // también mostrar el partido de la final abajo si existe
+    document.getElementById("bracket-view").style.display = "block";
+    renderKOPhase("final");
+  } else {
+    document.getElementById("bracket-view").style.display = "block";
+    renderKOPhase(phase);
+  }
 }
 
+// ─────────────────────────────────────────────────────────────
+// TABS DE GRUPOS
+// ─────────────────────────────────────────────────────────────
+function buildGroupTabs() {
+  const grupos = Object.keys(groupMatches)
+    .filter(g => g.startsWith("GROUP_"))
+    .sort();
 
-    // ─────────────────────────────────────────
-    // ESTADO GLOBAL
-    // ─────────────────────────────────────────
-    let todosLosPartidos = {};   // { "GROUP_A": [...partidos], ... }
-    let grupoActivo = null;
+  if (grupos.length === 0) {
+    showError("No se encontraron partidos de fase de grupos.");
+    return;
+  }
 
-        // ─────────────────────────────────────────
-        // ARRANQUE: pedir datos al servidor
-        // ─────────────────────────────────────────
-        fetch("https://fixture2026-backend.onrender.com/matches")
-            .then(res => {
-                if (!res.ok) throw new Error(`El servidor respondió con error ${res.status}`);
-                return res.json();
-            })
-            .then(data => {
-                if (!data.matches || data.matches.length === 0) {
-                    mostrarError("La API no devolvió partidos. Verificá tu API Key.");
-                    return;
-                }
+  const tabsContainer = document.getElementById("group-tabs");
+  tabsContainer.innerHTML = "";
 
-                // Agrupar por grupo
-                data.matches.forEach(p => {
-                    const grupo = p.grupo || "SIN_GRUPO";
-                    if (!todosLosPartidos[grupo]) todosLosPartidos[grupo] = [];
-                    todosLosPartidos[grupo].push(p);
-                });
+  grupos.forEach((g, i) => {
+    const btn = document.createElement("button");
+    btn.className = "tab-btn" + (i === 0 ? " active" : "");
+    btn.textContent = g.replace("GROUP_", "Grupo ");
+    btn.addEventListener("click", () => selectGroup(g, btn));
+    tabsContainer.appendChild(btn);
+  });
 
-                // Solo mostrar fase de grupos (filtrar eliminatorias)
-                const gruposDeFase = Object.keys(todosLosPartidos)
-                    .filter(g => g && g.startsWith("GROUP_"))
-                    .sort();
+  selectGroup(grupos[0], tabsContainer.querySelector(".tab-btn"));
+}
 
-                if (gruposDeFase.length === 0) {
-                    mostrarError("No se encontraron partidos de fase de grupos. Revisá el endpoint de la API.");
-                    return;
-                }
+function selectGroup(grupo, btnActivo) {
+  activeGroup = grupo;
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  btnActivo.classList.add("active");
+  const nombre = grupo.replace("GROUP_", "Grupo ");
+  document.getElementById("grupo-titulo").textContent       = "🗓️ Partidos — " + nombre;
+  document.getElementById("tabla-grupo-nombre").textContent = nombre;
+  renderPartidos(grupo);
+  renderTabla(grupo);
+}
 
-                // Crear tabs
-                const tabsContainer = document.getElementById("group-tabs");
-                tabsContainer.innerHTML = "";
-                gruposDeFase.forEach((grupo, i) => {
-                    const btn = document.createElement("button");
-                    btn.className = "tab-btn" + (i === 0 ? " active" : "");
-                    btn.textContent = grupo.replace("GROUP_", "Grupo ");
-                    btn.onclick = () => seleccionarGrupo(grupo, btn);
-                    tabsContainer.appendChild(btn);
-                });
+// ─────────────────────────────────────────────────────────────
+// RENDER PARTIDOS (grupos)
+// ─────────────────────────────────────────────────────────────
+function renderPartidos(grupo) {
+  const container = document.getElementById("matches-container");
+  const partidos  = groupMatches[grupo] || [];
+  container.innerHTML = "";
 
-                // Mostrar primer grupo
-                seleccionarGrupo(gruposDeFase[0], tabsContainer.querySelector(".tab-btn"));
-            })
-            .catch(err => {
-                console.error("Error:", err);
-                mostrarError(
-                    "No se pudo conectar con el servidor backend.",
-                    "Asegurate de que el servidor esté corriendo: <code>node server/index.js</code>"
-                );
-                document.getElementById("group-tabs").innerHTML = "";
-            });
+  if (partidos.length === 0) {
+    container.innerHTML = '<p style="color:var(--text-secondary);text-align:center;padding:2rem">Sin partidos para este grupo.</p>';
+    return;
+  }
 
-        // ─────────────────────────────────────────
-        // SELECCIONAR GRUPO
-        // ─────────────────────────────────────────
-        function seleccionarGrupo(grupo, btnActivo) {
-            grupoActivo = grupo;
+  partidos.forEach(p => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "match-wrapper";
 
-            // Activar tab
-            document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-            btnActivo.classList.add("active");
+    const fecha = formatDate(p.fecha);
+    let centroHTML = "";
 
-            const nombreGrupo = grupo.replace("GROUP_", "Grupo ");
-            document.getElementById("grupo-titulo").textContent = "🗓️ Partidos — " + nombreGrupo;
-            document.getElementById("tabla-grupo-nombre").textContent = nombreGrupo;
+    if (p.estado === "FINISHED") {
+      centroHTML = `<div style="text-align:center">
+        <div class="score-display">${p.golesHome} - ${p.golesAway}</div>
+        <span class="status-badge status-finished">Final</span>
+      </div>`;
+    } else if (p.estado === "IN_PLAY" || p.estado === "PAUSED") {
+      centroHTML = `<div style="text-align:center">
+        <div class="score-display">${p.golesHome ?? 0} - ${p.golesAway ?? 0}</div>
+        <span class="status-badge status-live">🔴 En vivo</span>
+      </div>`;
+    } else {
+      centroHTML = `<div class="vs">VS</div>`;
+    }
 
-            renderPartidos(grupo);
-            renderTabla(grupo);
-        }
+    wrapper.innerHTML = `
+      <div class="match-card">
+        <div class="team team-home"><span class="team-name">${t(p.home)}</span></div>
+        ${centroHTML}
+        <div class="team team-away"><span class="team-name">${t(p.away)}</span></div>
+      </div>
+      <div class="match-date">${fecha}</div>`;
+    container.appendChild(wrapper);
+  });
+}
 
-        // ─────────────────────────────────────────
-        // RENDERIZAR PARTIDOS
-        // ─────────────────────────────────────────
-        function renderPartidos(grupo) {
-            const container = document.getElementById("matches-container");
-            const partidos = todosLosPartidos[grupo] || [];
-            container.innerHTML = "";
+// ─────────────────────────────────────────────────────────────
+// RENDER TABLA POSICIONES
+// ─────────────────────────────────────────────────────────────
+function renderTabla(grupo) {
+  const partidos = groupMatches[grupo] || [];
+  const stats = {};
 
-            if (partidos.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-secondary); text-align:center; padding: 2rem;">Sin partidos para este grupo.</p>';
-                return;
-            }
+  partidos.forEach(p => {
+    if (!stats[p.home]) stats[p.home] = { pts:0, pj:0, g:0, e:0, l:0, gf:0, gc:0 };
+    if (!stats[p.away]) stats[p.away] = { pts:0, pj:0, g:0, e:0, l:0, gf:0, gc:0 };
+  });
 
-            partidos.forEach(p => {
-                const wrapper = document.createElement("div");
-                wrapper.className = "match-wrapper";
+  partidos.forEach(p => {
+    if (p.estado === "FINISHED" && p.golesHome !== null && p.golesAway !== null) {
+      const h = p.golesHome, a = p.golesAway;
+      stats[p.home].pj++; stats[p.away].pj++;
+      stats[p.home].gf += h; stats[p.home].gc += a;
+      stats[p.away].gf += a; stats[p.away].gc += h;
+      if      (h > a) { stats[p.home].g++; stats[p.home].pts += 3; stats[p.away].l++; }
+      else if (h < a) { stats[p.away].g++; stats[p.away].pts += 3; stats[p.home].l++; }
+      else            { stats[p.home].e++; stats[p.away].e++; stats[p.home].pts++; stats[p.away].pts++; }
+    }
+  });
 
-                const fecha = new Date(p.fecha).toLocaleDateString("es-AR", {
-                    day: "2-digit", month: "short", year: "numeric",
-                    hour: "2-digit", minute: "2-digit"
-                });
+  const ordenados = Object.entries(stats).sort(([,a],[,b]) => {
+    const da = a.gf - a.gc, db = b.gf - b.gc;
+    if (b.pts !== a.pts) return b.pts - a.pts;
+    if (db !== da)       return db - da;
+    return b.gf - a.gf;
+  });
 
-                let centroHTML = "";
-                if (p.estado === "FINISHED") {
-                    centroHTML = `
-                        <div style="text-align:center">
-                            <div class="score-display">${p.golesHome} - ${p.golesAway}</div>
-                            <span class="status-badge status-finished">Final</span>
-                        </div>`;
-                } else if (p.estado === "IN_PLAY" || p.estado === "PAUSED") {
-                    centroHTML = `
-                        <div style="text-align:center">
-                            <div class="score-display">${p.golesHome ?? 0} - ${p.golesAway ?? 0}</div>
-                            <span class="status-badge status-live">🔴 En vivo</span>
-                        </div>`;
-                } else {
-                    centroHTML = `<div class="vs">VS</div>`;
-                }
+  const tbody = document.getElementById("standings-body");
+  tbody.innerHTML = "";
+  ordenados.forEach(([nombre, s], i) => {
+    const df = s.gf - s.gc;
+    const tr = document.createElement("tr");
+    if (i === 0) tr.className = "clasificado-1";
+    if (i === 1) tr.className = "clasificado-2";
+    tr.innerHTML = `
+      <td><strong>${i+1}. ${t(nombre)}</strong>${i < 2 ? ' ✅' : ''}</td>
+      <td><strong>${s.pts}</strong></td>
+      <td>${s.pj}</td><td>${s.g}</td><td>${s.e}</td><td>${s.l}</td>
+      <td>${s.gf}</td><td>${s.gc}</td>
+      <td>${df > 0 ? '+'+df : df}</td>`;
+    tbody.appendChild(tr);
+  });
+}
 
-                wrapper.innerHTML = `
-                    <div class="match-card">
-                        <div class="team team-home">
-                            <span class="team-name">${traducir(p.home)}</span>
-                        </div>
-                        ${centroHTML}
-                        <div class="team team-away">
-                            <span class="team-name">${traducir(p.away)}</span>
-                        </div>
-                    </div>
-                    <div class="match-date">${fecha}</div>
-                `;
-                container.appendChild(wrapper);
-            });
-        }
+// ─────────────────────────────────────────────────────────────
+// RENDER FASE ELIMINATORIA
+// ─────────────────────────────────────────────────────────────
+function renderKOPhase(phaseKey) {
+  const cfg = PHASE_CONFIG[phaseKey];
+  if (!cfg) return;
 
-        // ─────────────────────────────────────────
-        // RENDERIZAR TABLA DE POSICIONES
-        // ─────────────────────────────────────────
-     
-        function renderTabla(grupo) {
-            const partidos = todosLosPartidos[grupo] || [];
-            const stats = {};
+  document.getElementById("bracket-title").textContent        = cfg.title;
+  document.getElementById("bracket-phase-label").textContent  = cfg.label;
 
-            // Recolectar equipos únicos
-            partidos.forEach(p => {
-                if (!stats[p.home]) stats[p.home] = { pts:0, pj:0, g:0, e:0, l:0, gf:0, gc:0 };
-                if (!stats[p.away]) stats[p.away] = { pts:0, pj:0, g:0, e:0, l:0, gf:0, gc:0 };
-            });
+  const container = document.getElementById("ko-matches-container");
+  container.innerHTML = "";
 
-            // Calcular solo partidos terminados
-            partidos.forEach(p => {
-                if (p.estado === "FINISHED" && p.golesHome !== null && p.golesAway !== null) {
-                    const h = p.golesHome;
-                    const a = p.golesAway;
+  // Buscar partidos que correspondan a este stage
+  // El backend puede devolver el stage en distintos formatos; probamos variantes
+  const stageVariants = [cfg.stage];
 
-                    stats[p.home].pj++; stats[p.away].pj++;
-                    stats[p.home].gf += h; stats[p.home].gc += a;
-                    stats[p.away].gf += a; stats[p.away].gc += h;
+  // Variantes conocidas de football-data.org
+  const stageMap = {
+    "LAST_32":        ["LAST_32", "ROUND_OF_32"],
+    "ROUND_OF_16":    ["ROUND_OF_16", "LAST_16"],
+    "QUARTER_FINALS": ["QUARTER_FINALS", "QUARTERFINALS", "QF"],
+    "SEMI_FINALS":    ["SEMI_FINALS", "SEMIFINALS", "SF"],
+    "FINAL":          ["FINAL", "FINALS"]
+  };
+  const variants = stageMap[cfg.stage] || stageVariants;
 
-                    if (h > a) {
-                        stats[p.home].g++; stats[p.home].pts += 3; stats[p.away].l++;
-                    } else if (h < a) {
-                        stats[p.away].g++; stats[p.away].pts += 3; stats[p.home].l++;
-                    } else {
-                        stats[p.home].e++; stats[p.away].e++;
-                        stats[p.home].pts++; stats[p.away].pts++;
-                    }
-                }
-            });
+  let partidos = [];
+  variants.forEach(v => {
+    if (koMatches[v]) partidos = partidos.concat(koMatches[v]);
+  });
 
-            // Ordenar: puntos → diferencia → goles a favor
-            const ordenados = Object.entries(stats).sort(([,a],[,b]) => {
-                const da = a.gf - a.gc, db = b.gf - b.gc;
-                if (b.pts !== a.pts) return b.pts - a.pts;
-                if (db !== da) return db - da;
-                return b.gf - a.gf;
-            });
+  // Ordenar por fecha
+  partidos.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
 
-            const tbody = document.getElementById("standings-body");
-            tbody.innerHTML = "";
+  if (partidos.length === 0) {
+    container.innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text-secondary)">
+      <div style="font-size:2.5rem;margin-bottom:1rem">🗓️</div>
+      <div style="font-weight:600;margin-bottom:0.5rem">Aún no hay partidos disponibles</div>
+      <div style="font-size:0.85rem">Esta fase se habilitará cuando avance el torneo.</div>
+    </div>`;
+    return;
+  }
 
-            ordenados.forEach(([nombre, s], i) => {
-                const df = s.gf - s.gc;
-                const tr = document.createElement("tr");
-                if (i === 0) tr.className = "clasificado-1";
-                if (i === 1) tr.className = "clasificado-2";
-                tr.innerHTML = `
-                    <td><strong>${i + 1}. ${traducir(nombre)}</strong>${i < 2 ? ' ✅' : ''}</td>
-                    <td><strong>${s.pts}</strong></td>
-                    <td>${s.pj}</td>
-                    <td>${s.g}</td>
-                    <td>${s.e}</td>
-                    <td>${s.l}</td>
-                    <td>${s.gf}</td>
-                    <td>${s.gc}</td>
-                    <td>${df > 0 ? '+'+df : df}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
+  const labelFn = MATCH_LABELS[phaseKey] || (n => `Partido ${n}`);
 
-        // ─────────────────────────────────────────
-        // HELPERS
-        // ─────────────────────────────────────────
-        function mostrarError(msg, hint = "") {
-            document.getElementById("matches-container").innerHTML = `
-                <div class="error-msg">
-                    ⚠️ ${msg}
-                    ${hint ? `<div class="error-hint">${hint}</div>` : ""}
-                </div>`;
-        }
-    </script>
+  partidos.forEach((p, i) => {
+    const card = buildKOMatchCard(p, i + 1, labelFn);
+    container.appendChild(card);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────
+// CONSTRUIR TARJETA KO
+// ─────────────────────────────────────────────────────────────
+function buildKOMatchCard(p, num, labelFn) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "ko-match";
+
+  const isFinished = p.estado === "FINISHED";
+  const isLive     = p.estado === "IN_PLAY" || p.estado === "PAUSED";
+  const homeName   = p.home ? t(p.home) : null;
+  const awayName   = p.away ? t(p.away) : null;
+
+  // Determinar ganador (para highlight)
+  let homeWinner = false, awayWinner = false;
+  if (isFinished && p.golesHome !== null && p.golesAway !== null) {
+    if      (p.golesHome > p.golesAway) homeWinner = true;
+    else if (p.golesAway > p.golesHome) awayWinner = true;
+    // empate: el ganador lo decide penales (si el backend lo trae)
+    // football-data.org incluye score.penalties si hubo penales
+  }
+
+  // Penales (el backend podría traerlos en el futuro como golesHomePen / golesAwayPen)
+  const hasPen = p.golesHomePen !== null && p.golesHomePen !== undefined &&
+                 p.golesAwayPen !== null && p.golesAwayPen !== undefined;
+
+  if (hasPen) {
+    if (p.golesHomePen > p.golesAwayPen) homeWinner = true;
+    else awayWinner = true;
+  }
+
+  // Fecha
+  const fecha = formatDate(p.fecha);
+
+  // Badge de estado
+  let badgeHTML = "";
+  if (isFinished) {
+    badgeHTML = hasPen
+      ? `<span class="status-badge status-finished">Final · Penales</span>`
+      : `<span class="status-badge status-finished">Final</span>`;
+  } else if (isLive) {
+    badgeHTML = `<span class="status-badge status-live">🔴 En vivo</span>`;
+  } else {
+    badgeHTML = `<span class="status-badge status-scheduled">Programado</span>`;
+  }
+
+  // Centro del marcador
+  let scoreHTML = "";
+  if (isFinished || isLive) {
+    const gh = p.golesHome ?? 0;
+    const ga = p.golesAway ?? 0;
+    scoreHTML = `
+      <div class="ko-score-main">${gh} - ${ga}</div>
+      ${hasPen ? `<div class="ko-score-pen">(${p.golesHomePen} - ${p.golesAwayPen} pen.)</div>` : ""}
+      ${badgeHTML}`;
+  } else {
+    scoreHTML = `<div class="ko-vs">VS</div>${badgeHTML}`;
+  }
+
+  wrapper.innerHTML = `
+    <div class="ko-match-header">${labelFn(num)}</div>
+    <div class="ko-teams">
+      <div class="ko-team ko-team-home ${homeWinner ? 'winner' : ''}">
+        ${homeName
+          ? `<span class="ko-team-name">${homeName}</span>`
+          : `<span class="ko-team-tbd">Por definir</span>`}
+      </div>
+      <div class="ko-score-center">${scoreHTML}</div>
+      <div class="ko-team ko-team-away ${awayWinner ? 'winner' : ''}">
+        ${awayName
+          ? `<span class="ko-team-name">${awayName}</span>`
+          : `<span class="ko-team-tbd">Por definir</span>`}
+      </div>
+    </div>
+    <div class="ko-date">${fecha}</div>`;
+
+  return wrapper;
+}
+
+// ─────────────────────────────────────────────────────────────
+// RENDER CAMPEÓN
+// ─────────────────────────────────────────────────────────────
+function renderChampion() {
+  const content = document.getElementById("champion-content");
+
+  // Buscar el partido final
+  const stageVariants = ["FINAL", "FINALS"];
+  let finalMatches = [];
+  stageVariants.forEach(v => {
+    if (koMatches[v]) finalMatches = finalMatches.concat(koMatches[v]);
+  });
+
+  const finalMatch = finalMatches[0];
+
+  if (!finalMatch || finalMatch.estado !== "FINISHED") {
+    content.innerHTML = `
+      <div class="champion-trophy">🏆</div>
+      <div class="champion-label">Campeón Mundial 2026</div>
+      <div class="champion-placeholder">La final aún no se ha jugado</div>`;
+    return;
+  }
+
+  const gh = finalMatch.golesHome ?? 0;
+  const ga = finalMatch.golesAway ?? 0;
+  const hasPen = finalMatch.golesHomePen !== null && finalMatch.golesHomePen !== undefined;
+
+  let champion = "";
+  if      (gh > ga)  champion = t(finalMatch.home);
+  else if (ga > gh)  champion = t(finalMatch.away);
+  else if (hasPen) {
+    champion = finalMatch.golesHomePen > finalMatch.golesAwayPen
+      ? t(finalMatch.home)
+      : t(finalMatch.away);
+  }
+
+  if (!champion) {
+    content.innerHTML = `
+      <div class="champion-trophy">🏆</div>
+      <div class="champion-label">Campeón Mundial 2026</div>
+      <div class="champion-placeholder">Resultado pendiente de confirmar</div>`;
+    return;
+  }
+
+  content.innerHTML = `
+    <div class="champion-trophy">🏆</div>
+    <div class="champion-label">Campeón Mundial 2026</div>
+    <div class="champion-name">${champion}</div>
+    <div style="margin-top:1rem;color:var(--text-secondary);font-size:0.9rem">
+      ${t(finalMatch.home)} ${gh} - ${ga} ${t(finalMatch.away)}
+      ${hasPen ? `<br><span style="color:var(--gold);font-size:0.8rem">(Penales: ${finalMatch.golesHomePen} - ${finalMatch.golesAwayPen})</span>` : ""}
+    </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────────────────────
+function formatDate(iso) {
+  if (!iso) return "—";
+  try {
+    return new Date(iso).toLocaleDateString("es-AR", {
+      day: "2-digit", month: "short", year: "numeric",
+      hour: "2-digit", minute: "2-digit"
+    });
+  } catch { return iso; }
+}
+
+function showError(msg, hint = "") {
+  document.getElementById("matches-container").innerHTML = `
+    <div class="error-msg">
+      ⚠️ ${msg}
+      ${hint ? `<div class="error-hint">${hint}</div>` : ""}
+    </div>`;
+}
+</script>
 </body>
 </html>

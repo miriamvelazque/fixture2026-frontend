@@ -141,6 +141,44 @@
         .team-home .team-name { margin-right: 0.75rem; }
         .team-away .team-name { margin-left: 0.75rem; }
 
+        /* Nombre + bandera en columna */
+        .team-label {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .team-label--right { align-items: flex-end;   margin-right: 0.75rem; }
+        .team-label--left  { align-items: flex-start; margin-left:  0.75rem; }
+        .team-name-text { font-weight: 600; font-size: 0.95rem; line-height: 1.2; }
+
+        .team-flag-wrap { display: flex; }
+        .team-label--right .team-flag-wrap { justify-content: flex-end; }
+        .team-label--left  .team-flag-wrap { justify-content: flex-start; }
+
+        .team-flag-img {
+            height: 16px;
+            width: auto;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+            display: block;
+        }
+
+        /* En tabla de posiciones */
+        .flag-inline {
+            height: 14px;
+            width: auto;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.35);
+            vertical-align: middle;
+            margin-right: 0.35rem;
+        }
+
+        /* En tarjetas KO, sin margen lateral extra */
+        .ko-team .team-label--right { margin-right: 0; }
+        .ko-team .team-label--left  { margin-left:  0; }
+        .ko-team .team-name-text    { font-size: 0.92rem; font-weight: 700; }
+        .ko-team .team-flag-img     { height: 18px; }
+
         .vs {
             margin: 0 0.75rem; color: var(--text-secondary);
             font-size: 0.85rem; font-weight: bold;
@@ -234,6 +272,7 @@
 
         .ko-team-home { justify-content: flex-end; text-align: right; }
         .ko-team-away { justify-content: flex-start; text-align: left; }
+        .ko-team .team-name-text { font-size: 0.92rem; font-weight: 700; }
 
         .ko-team-name {
             font-weight: 700;
@@ -506,13 +545,62 @@ const traducciones = {
   "USA":"Estados Unidos"
 };
 
+// ─────────────────────────────────────────────────────────────
+// CÓDIGOS ISO DE PAÍSES → flagcdn.com
+// ─────────────────────────────────────────────────────────────
+const codigoPais = {
+  // América
+  "Argentina":"ar","Brazil":"br","Canada":"ca","Chile":"cl",
+  "Colombia":"co","Costa Rica":"cr","Ecuador":"ec","Mexico":"mx",
+  "Paraguay":"py","Peru":"pe","United States":"us","USA":"us",
+  "Uruguay":"uy","Bolivia":"bo","Venezuela":"ve","Panama":"pa",
+  "Honduras":"hn","El Salvador":"sv","Guatemala":"gt",
+  "Trinidad and Tobago":"tt","Haiti":"ht","Jamaica":"jm",
+  // Europa
+  "Austria":"at","Belgium":"be","Croatia":"hr","Czechia":"cz",
+  "Czech Republic":"cz","Denmark":"dk","England":"gb-eng",
+  "Finland":"fi","France":"fr","Germany":"de","Greece":"gr",
+  "Hungary":"hu","Netherlands":"nl","Norway":"no","Poland":"pl",
+  "Portugal":"pt","Scotland":"gb-sct","Serbia":"rs","Spain":"es",
+  "Sweden":"se","Switzerland":"ch","Turkey":"tr","Ukraine":"ua",
+  "Wales":"gb-wls","Slovakia":"sk","Slovenia":"si","Albania":"al",
+  "Romania":"ro","Georgia":"ge",
+  // África
+  "Algeria":"dz","Cape Verde Islands":"cv","Egypt":"eg",
+  "Ghana":"gh","Ivory Coast":"ci","Morocco":"ma","Nigeria":"ng",
+  "Senegal":"sn","South Africa":"za","Tunisia":"tn",
+  "Cameroon":"cm","Mali":"ml","Guinea":"gn",
+  // Asia / Oceanía
+  "Australia":"au","China":"cn","Iran":"ir","IR Iran":"ir",
+  "Japan":"jp","Jordan":"jo","New Zealand":"nz",
+  "Qatar":"qa","Saudi Arabia":"sa","South Korea":"kr",
+  "Korea Republic":"kr","Indonesia":"id","Uzbekistan":"uz",
+};
+
+function flagImg(rawName) {
+  const code = codigoPais[rawName];
+  if (!code) return "";
+  return `<img class="team-flag-img" src="https://flagcdn.com/h20/${code}.png" alt="${rawName}" loading="lazy">`;
+}
+
 function t(n) { return traducciones[n] || n || "—"; }
+
+// Devuelve nombre traducido + bandera imagen como HTML de dos líneas
+function teamHTML(rawName, align) {
+  const nombre = t(rawName);
+  const bandera = flagImg(rawName);
+  const cls = align === "right" ? "team-label team-label--right" : "team-label team-label--left";
+  return `<span class="${cls}">
+    <span class="team-name-text">${nombre}</span>
+    ${bandera ? `<span class="team-flag-wrap">${bandera}</span>` : ""}
+  </span>`;
+}
 
 // ─────────────────────────────────────────────────────────────
 // MAPAS DE FASES
 // ─────────────────────────────────────────────────────────────
 const PHASE_CONFIG = {
-  r32:   { stage: "LAST_32",        label: "1/16 · Dieciseisavos de Final",  title: "Dieciseisavos de Final" },
+  r32:   { stage: "LAST_32",        label: "Dieciseisavos de Final",         title: "Dieciseisavos de Final" },
   r16:   { stage: "ROUND_OF_16",    label: "Octavos de Final",               title: "Octavos de Final" },
   qf:    { stage: "QUARTER_FINALS", label: "Cuartos de Final",               title: "Cuartos de Final" },
   sf:    { stage: "SEMI_FINALS",    label: "Semifinales",                    title: "Semifinales" },
@@ -686,9 +774,9 @@ function renderPartidos(grupo) {
 
     wrapper.innerHTML = `
       <div class="match-card">
-        <div class="team team-home"><span class="team-name">${t(p.home)}</span></div>
+        <div class="team team-home">${teamHTML(p.home, "right")}</div>
         ${centroHTML}
-        <div class="team team-away"><span class="team-name">${t(p.away)}</span></div>
+        <div class="team team-away">${teamHTML(p.away, "left")}</div>
       </div>
       <div class="match-date">${fecha}</div>`;
     container.appendChild(wrapper);
@@ -734,7 +822,7 @@ function renderTabla(grupo) {
     if (i === 0) tr.className = "clasificado-1";
     if (i === 1) tr.className = "clasificado-2";
     tr.innerHTML = `
-      <td><strong>${i+1}. ${t(nombre)}</strong>${i < 2 ? ' ✅' : ''}</td>
+      <td><strong>${i+1}. ${flagImg(nombre) ? `<img class="flag-inline" src="https://flagcdn.com/h20/${codigoPais[nombre]}.png" alt="${nombre}">` : ""} ${t(nombre)}</strong>${i < 2 ? ' ✅' : ''}</td>
       <td><strong>${s.pts}</strong></td>
       <td>${s.pj}</td><td>${s.g}</td><td>${s.e}</td><td>${s.l}</td>
       <td>${s.gf}</td><td>${s.gc}</td>
@@ -858,13 +946,13 @@ function buildKOMatchCard(p, num, labelFn) {
     <div class="ko-teams">
       <div class="ko-team ko-team-home ${homeWinner ? 'winner' : ''}">
         ${homeName
-          ? `<span class="ko-team-name">${homeName}</span>`
+          ? teamHTML(p.home, "right")
           : `<span class="ko-team-tbd">Por definir</span>`}
       </div>
       <div class="ko-score-center">${scoreHTML}</div>
       <div class="ko-team ko-team-away ${awayWinner ? 'winner' : ''}">
         ${awayName
-          ? `<span class="ko-team-name">${awayName}</span>`
+          ? teamHTML(p.away, "left")
           : `<span class="ko-team-tbd">Por definir</span>`}
       </div>
     </div>
